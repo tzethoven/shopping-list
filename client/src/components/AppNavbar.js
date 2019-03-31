@@ -21,7 +21,6 @@ export class AppNavbar extends Component {
         });
     }
 
-
     render() {
         return (
             <div>
