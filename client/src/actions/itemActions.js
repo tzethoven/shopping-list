@@ -17,7 +17,7 @@ export const addItem = item => dispatch => {
         .post('/api/items', item)
         .then(res => dispatch({
             type: ADD_ITEM,
-            payload: item
+            payload: res.data
         }));
 }
 
@@ -28,7 +28,8 @@ export const deleteItem = id => dispatch=> {
         .then(res => dispatch({
             type: DELETE_ITEM,
             payload: id
-        }));
+        }))
+        .catch(err => console.log(err.response.data, err.response.status));
 }
 
 
