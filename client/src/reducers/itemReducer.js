@@ -1,7 +1,7 @@
 import uuid from 'uuid';
 import { GET_ITEMS, ADD_ITEM, DELETE_ITEM } from '../actions/types';
 
-const initialstate = {
+const initialState = {
     items: [
         { id: uuid(), name: 'Brocoli' },
         { id: uuid(), name: 'Eggplant' },
@@ -10,14 +10,18 @@ const initialstate = {
     ]
 };
 
-export default function(state=initialstate, action) {
-    switch (action) {
+export default function(state=initialState, action) {
+    switch (action.type) {
         case GET_ITEMS:
             return {
                 ...state
             };
+        case ADD_ITEM:
+            return {
+                ...state,
+                items: [action.payload, ...state.items]
+            };
         case DELETE_ITEM:
-            console.log('test1');
             return {
                 ...state,
                 items: state.items.filter(item => item.id !== action.payload)    
